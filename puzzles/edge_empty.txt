@@ -1,0 +1,4 @@
+# Edge case — empty grid. Feasible, but has a huge number of solutions
+# (6.67e21). Good for testing "find any solution" and solution enumeration
+# with a limit.
+.................................................................................

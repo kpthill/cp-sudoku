@@ -1,0 +1,3 @@
+# Hard — a 17-clue puzzle (17 is the proven minimum number of clues
+# for a sudoku with a unique solution).
+.......1.4.........2...........5.4.7..8...3....1.9....3..4..2...5.1........8.6...

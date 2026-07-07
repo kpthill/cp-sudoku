@@ -1,0 +1,4 @@
+# Edge case — infeasible. No clue directly conflicts with another (every row,
+# column and box is locally valid), yet the puzzle has no solution. The solver
+# should report INFEASIBLE rather than crash or hang.
+..4.2.6..9..3.5..1..18.64....81.29..7.......8..67.82....26.95..8..2.3..9..5.1.3..

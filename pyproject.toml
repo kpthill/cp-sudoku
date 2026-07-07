@@ -1,0 +1,9 @@
+[project]
+name = "cp-sudoku"
+version = "0.1.0"
+description = "Exercises: solving sudoku with OR-Tools CP-SAT"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ortools>=9.11",
+]
