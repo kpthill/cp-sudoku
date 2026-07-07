@@ -60,29 +60,29 @@ def main():
         print(f"Solution count: {solution_printer.solution_count}")
 
 def print_sudoku_blank(board):
-          for r in range(9):
-            print(" ".join([str(board[r][c]) if board[r][c] != -1 else "." for c in range(9)]))
+  for r in range(9):
+    print(" ".join([str(board[r][c]) if board[r][c] != -1 else "." for c in range(9)]))
 def print_sudoku_solved(solver, model_vars):
-          for r in range(9):
-            print(" ".join([str(solver.value(model_vars[r][c])) for c in range(9)]))
+  for r in range(9):
+    print(" ".join([str(solver.value(model_vars[r][c])) for c in range(9)]))
 
 
 class VarArraySolutionPrinter(cp_model.CpSolverSolutionCallback):
-    """Print intermediate solutions."""
+  """Print intermediate solutions."""
 
-    def __init__(self, variables):
-        cp_model.CpSolverSolutionCallback.__init__(self)
-        self.__variables = variables
-        self.__solution_count = 0
+  def __init__(self, variables):
+      cp_model.CpSolverSolutionCallback.__init__(self)
+      self.__variables = variables
+      self.__solution_count = 0
 
-    def on_solution_callback(self) -> None:
-        self.__solution_count += 1
-        print_sudoku_solved(self, self.__variables)
-        print()
+  def on_solution_callback(self) -> None:
+      self.__solution_count += 1
+      print_sudoku_solved(self, self.__variables)
+      print()
 
-    @property
-    def solution_count(self) -> int:
-        return self.__solution_count
+  @property
+  def solution_count(self) -> int:
+      return self.__solution_count
 
 if __name__ == '__main__':
   main()
