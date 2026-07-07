@@ -66,11 +66,14 @@ def main():
         model, model_vars = setup_problem(board)
         solver = cp_model.CpSolver()
         status = solver.solve(model)
-        for r in range(9):
-          print(" ".join([str(board[r][c]) if board[r][c] != -1 else "." for c in range(9)]))
-        print("---")
-        for r in range(9):
-          print(" ".join([str(solver.value(model_vars[r][c])) for c in range(9)]))
+        if status in [cp_model.OPTIMAL, cp_model.FEASIBLE]:
+          for r in range(9):
+            print(" ".join([str(board[r][c]) if board[r][c] != -1 else "." for c in range(9)]))
+          print("---")
+          for r in range(9):
+            print(" ".join([str(solver.value(model_vars[r][c])) for c in range(9)]))
+        else:
+          print("No solution")
 
 if __name__ == '__main__':
   main()
