@@ -16,27 +16,16 @@ def setup_problem(board):
         model_vars[i][j] = model.new_int_var(board[i][j], board[i][j], board_var_name)
 
   for r in range(9):
-    for c1 in range(9):
-      for c2 in range(c1+1,9):
-        #print( f"m[{r}, {c1}] != m[{r},{c2}] ")#DEBUG
-        model.add( model_vars[r][c1] != model_vars[r][c2] )
+    model.add_all_different( [ model_vars[r][c] for c in range(9) ] )
 
   for c in range(9):
-    for r1 in range(9):
-      for r2 in range(r1+1,9):
-        #print( f"m[{r1}, {c}] != m[{r2},{c}] ")#DEBUG
-        model.add( model_vars[r1][c] != model_vars[r2][c] )
+    model.add_all_different( [ model_vars[r][c] for r in range(9) ] )
 
   for off_r in range(3):
     for off_c in range(3):
-      for numpad1 in range(9):
-        board1_r = 3*off_r + numpad1 % 3
-        board1_c = 3*off_c + numpad1 // 3
-        for numpad2 in range(numpad1 + 1, 9):
-          board2_r = 3*off_r + numpad2 % 3
-          board2_c = 3*off_c + numpad2 // 3
-          #print( f"({board1_r}, {board1_c}) -> ({board2_r}, {board2_c})" )#DEBUG
-          model.add( model_vars[board1_r][board1_c] != model_vars[board2_r][board2_c] )
+      model.add_all_different( [
+          model_vars[3*off_r + numpad % 3][3*off_c + numpad // 3]
+            for numpad in range(9) ] )
   return model, model_vars
   #print(model_vars)#DEBUG
   #print(model)#DEBUG
